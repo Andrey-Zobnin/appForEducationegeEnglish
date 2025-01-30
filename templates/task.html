@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача {{ task_id }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        const correctAnswers = {{ questions[1::2] | tojson }};
+
+
+        function checkAnswer(index) {
+            const inputField = document.getElementById(`answer-${index}`);
+            const userAnswer = inputField.value.trim().toLowerCase();
+            const correctAnswer = correctAnswers[index].trim().toLowerCase();
+
+            if (userAnswer === correctAnswer) {
+                inputField.classList.remove("incorrect");
+                inputField.classList.add("correct");
+            } else {
+                inputField.classList.remove("correct");
+                inputField.classList.add("incorrect");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="task-page">
+        <h1>Задача {{ task_id }}</h1>
+        {% if questions[0] != "нет задfxb" %}
+            <form class="question-form">
+                {% for question in questions[::2] %}
+                <div class="question-block">
+                    <p class="question">{{ question }}</p>
+                    <input type="text" id="answer-{{ loop.index0 }}" class="answer-input" placeholder="Введите ваш ответ">
+                    <button type="button" class="submit-button" onclick="checkAnswer({{ loop.index0 }})">Отправить</button>
+                </div>
+                {% endfor %}
+            </form>
+        {% else %}
+            <p class="error">{{ questions[0] }}</p>
+        {% endif %}
+        <a href="/" class="back-button">Домой</a>
+    </div>
+</body>
+</html>
