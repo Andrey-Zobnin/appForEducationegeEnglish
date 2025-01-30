@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задача {{ task_id }}</title>
+    <title>Task {{ task_id }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script>
         const correctAnswers = {{ questions[1::2] | tojson }};
