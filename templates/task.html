@@ -9,7 +9,8 @@
         const correctAnswers = {{ questions[1::2] | tojson }};
 
 
-        function checkAnswer(index) {
+        function checkAnswer(index) 
+        {
             const inputField = document.getElementById(`answer-${index}`);
             const userAnswer = inputField.value.trim().toLowerCase();
             const correctAnswer = correctAnswers[index].trim().toLowerCase();
