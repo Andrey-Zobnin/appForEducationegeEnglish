@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задачи</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% for task in tasks %}
+        <a href="/task{{ loop.index }}.html" class="task-box">{{ task }}</a>
+        {% endfor %}
+    </div>
+</body>
+</html>
