@@ -46,3 +46,16 @@ h1 {
     grid-column: span 5; /* Занимает всю ширину */
     background: #28a745; /* Зеленый цвет для случайной задачи */
 }
+
+.answer {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.correct {
+    background-color: #d4edda; /* Зеленый цвет для правильного ответа */
+}
+
+.incorrect {
+    background-color: #f8d7da; /* Красный цвет для неправильного ответа */
+}
