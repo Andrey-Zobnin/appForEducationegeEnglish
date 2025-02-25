@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задачи</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Task Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
 </head>
 <body>
     <div class="container">
-        <h1>Список задач</h1>
-        {% for i in range(1, 21) %}
-            <a href="/task{{ i }}.html" class="task-box">Вариант {{ i }}</a>
-        {% endfor %}
+        <h1>Welcome to the Task Application</h1>
+        <p>Select a task to begin:</p>
+        <ul>
+            {% for i in range(1, 41) %}
+                <li><a href="/task/{{ i }}">Task {{ i }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>
