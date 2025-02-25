@@ -1,96 +1,48 @@
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    width: 100%;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 10px;
-    width: 100%;
-    max-width: 600px;
-    box-sizing: border-box;
-}
-
-h1 {
-    text-align: center;
-}
-
-.question-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.submit-button, .back-button {
-    padding: 10px;
-    background-color: #202020;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-button:hover, .back-button:hover {
-    background-color: #0e0e0e;
-}
-
-.answer-input {
-    font-size: 1rem;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.answer-input:focus {
-    outline: none;
-    border-color: #007bff;
-}
-
-.answer-input.correct {
-    border-color: #28a745;
-    background-color: #d4edda;
-}
-
-.answer-input.incorrect {
-    border-color: #dc3545;
-    background-color: #f8d7da;
-}
-
-.error {
-    color: red;
-    font-size: 1.2rem;
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #f4f4f4;
+    margin: 0;
     padding: 20px;
 }
 
-.task-box {
-    display: block;
-    margin: 10px 0;
-    padding: 15px;
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    width: 200px;
-    transition: background-color 0.3s;
+h1 {
+    color: #333;
 }
 
-.task-box:hover {
-    background-color: #0056b3;
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.task-tile {
+    background: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.task-tile a {
+    color: white;
+    text-decoration: none;
+}
+
+.task-tile:hover {
+    background: #0056b3;
+}
+
+.random-task {
+    grid-column: span 5; /* Занимает всю ширину */
+    background: #28a745; /* Зеленый цвет для случайной задачи */
 }
