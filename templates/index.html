@@ -3,19 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задания ОГЭ-ЕГЭ по английскому</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+    <title> {{ task_id }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answer {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Приложения для заданий по Английскому</h1>
-        <p>Для начала выберите задание:</p>
-        <ul>
-            {% for i in range(1, 41) %}
-                <li><a href="/task/{{ i }}">Task {{ i }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
+    <h1>Task {{ task_id }}</h1>
+    <div id="taskData" data-answers='{{ answers | tojson }}'></div>
+    <form id="taskForm">
+        {% for question in questions %}
+            <div class="question">
+                <p>{{ question }}</p>
+                <input type="text" class="answer" placeholder="Your answer">
+            </div>
+        {% endfor %}
+        <button type="button" id="checkAnswers">Check Answers</button>
+    </form>
+    <div id="result"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
