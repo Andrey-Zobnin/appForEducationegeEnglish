@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/task/<int:task_id>')
 def task(task_id):
-    # Example data for demonstration
+    # Польучаем данные о задаче из базы данных можно забить и не в массив, а в json например 
     tasks = {
         1: {
             "questions": [
@@ -139,6 +139,7 @@ def task(task_id):
             ],
             "answers": ["FRIENDLINESS", "MANAGER"]
         },
+        # 20 - вопрос exist пулл далее 
         20: {
             "questions": [
                 "The animals got stronger and healthier without any exercise. However, some doctors think that such pills can be 32________ (DANGER) for health.",
