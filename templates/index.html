@@ -3,39 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {{ task_id }}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .answer {
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Главная страница</title>
 </head>
 <body>
-    <h1>Task {{ task_id }}</h1>
-    <div id="taskData" data-answers='{{ answers | tojson }}'></div>
-    <form id="taskForm">
-        {% for question in questions %}
-            <div class="question">
-                <p>{{ question }}</p>
-                <input type="text" class="answer" placeholder="Your answer">
-            </div>
-        {% endfor %}
-        <button type="button" id="checkAnswers">Check Answers</button>
-    </form>
-    <div id="result"></div>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div class="container">
+        <h1>Добро пожаловать в приложение!</h1>
+        <a href="/task/1">Перейти к задаче 1</a>
+    </div>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
-    
 </body>
 </html>
