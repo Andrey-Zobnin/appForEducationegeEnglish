@@ -1,14 +1,9 @@
-// main.js
-
 $(document).ready(function() {
     // Get the correct answers from the HTML data attribute
     const correctAnswers = JSON.parse($('#taskData').attr('data-answers'));
 
-    $('#checkAnswers').on('click', function() 
-    {
-        
-        // massive for loop to iterate over each question and input field
-        
+    $('#checkAnswers').on('click', function() {
+        // Array to collect user answers
         let userAnswers = [];
 
         // Collect user answers from input fields
@@ -16,20 +11,20 @@ $(document).ready(function() {
             userAnswers.push($(this).val().trim().toUpperCase());
         });
          
-        // Check answers score and for user answers feedback
+        // Check answers score and provide user feedback
         let score = 0;
         let feedback = [];
 
         userAnswers.forEach((answer, index) => {
             if (answer === correctAnswers[index]) {
                 score++;
-                feedback.push(`Question ${index + 1}: Correct!`);
+                feedback.push(`Вопрос ${index + 1}: Верно!`);
             } else {
-                feedback.push(`Question ${index + 1}: Incorrect! Correct answer: ${correctAnswers[index]}`);
+                feedback.push(`Вопрос ${index + 1}: Неверно! Правильный ответ: ${correctAnswers[index]}`);
             }
         });
 
         // Display result
-        $('#result').html(`<p>You got ${score} out of ${correctAnswers.length} correct!</p><ul>${feedback.map(item => `<li>${item}</li>`).join('')}</ul>`);
+        $('#result').html(`<p>Вы набрали ${score} из ${correctAnswers.length} правильных ответов!</p><ul>${feedback.map(item => `<li>${item}</li>`).join('')}</ul>`);
     });
 });
