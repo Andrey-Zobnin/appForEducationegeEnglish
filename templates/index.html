@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Главная страница</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+    <title>Задача {{ task_id }}</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Добро пожаловать в приложение!</h1>
-        <a href="/task/1">Перейти к задаче 1</a>
+    <div class="task-page">
+        <h1>Задача {{ task_id }}</h1>
+        <div id="taskData" data-answers="{{ answers | tojson }}" style="display: none;"></div>
+        <form class="question-form">
+            {% for question in questions %}
+            <div class="question-block">
+                <p class="question">{{ question }}</p>
+                <input type="text" class="answer" placeholder="Введите ваш ответ">
+            </div>
+            {% endfor %}
+            <button type="button" id="checkAnswers">Проверить ответы</button>
+        </form>
+        <div id="result"></div>
+        <a href="/" class="back-button">На главную</a>
     </div>
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
