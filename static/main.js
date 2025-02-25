@@ -1,22 +1,28 @@
 $(document).ready(function() {
-    // Get the correct answers from the HTML data attribute
+    // Получаем правильные ответы из HTML атрибута данных
     const correctAnswers = JSON.parse($('#taskData').attr('data-answers'));
 
-    $('#checkAnswers').on('click', function() {
-        // Array to collect user answers
-        let userAnswers = [];
+    // Обработчик для кнопки "Отправить" для каждого поля ввода
+    $('.submit-button').on('click', function() {
+        const inputField = $(this).siblings('.answer');
+        const userAnswer = inputField.val().trim().toUpperCase();
+        const index = $(this).parent().index(); // Получаем индекс вопроса
 
-        // Collect user answers from input fields
-        $('.answer').each(function() {
-            userAnswers.push($(this).val().trim().toUpperCase());
-        });
-         
-        // Check answers score and provide user feedback
+        if (userAnswer === correctAnswers[index]) {
+            inputField.removeClass('incorrect').addClass('correct');
+        } else {
+            inputField.removeClass('correct').addClass('incorrect');
+        }
+    });
+
+    // Обработчик для кнопки "Проверить все ответы"
+    $('#checkAnswers').on('click', function() {
         let score = 0;
         let feedback = [];
 
-        userAnswers.forEach((answer, index) => {
-            if (answer === correctAnswers[index]) {
+        $('.answer').each(function(index) {
+            const userAnswer = $(this).val().trim().toUpperCase();
+            if (userAnswer === correctAnswers[index]) {
                 score++;
                 feedback.push(`Вопрос ${index + 1}: Верно!`);
             } else {
@@ -24,7 +30,7 @@ $(document).ready(function() {
             }
         });
 
-        // Display result
+        // Отображаем результат
         $('#result').html(`<p>Вы набрали ${score} из ${correctAnswers.length} правильных ответов!</p><ul>${feedback.map(item => `<li>${item}</li>`).join('')}</ul>`);
     });
 });
