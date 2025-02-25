@@ -1,5 +1,7 @@
 from flask import Flask, render_template, jsonify
 
+import random
+
 app = Flask(__name__)
 
 tasks = {
@@ -285,17 +287,32 @@ tasks = {
     }
 }
 
-@app.route('/task/<int:task_id>')
-def task(task_id):
-    if task_id in tasks:
-        task_data = tasks[task_id]
-        return render_template('task.html', task_id=task_id, questions=task_data["questions"], answers=task_data["answers"])
-    else:
-        return render_template('404.html'), 404  # TODO can create a 404.html template for better user experience
 
-@app.route('/update_score', methods=['POST'])
-def update_score():
-    return jsonify(success=True)
+@app.route('/')
+
+def index():
+
+    return render_template('index.html')
+
+
+@app.route('/task/<int:task_id>')
+
+def task(task_id):
+
+    task_data = tasks.get(task_id, {"questions": ["нет задачи"], "answers": []})
+
+    return render_template('task.html', task_id=task_id, questions=task_data["questions"], answers=task_data["answers"])
+
+
+@app.route('/random_task')
+
+def random_task():
+
+    task_id = random.choice(list(tasks.keys()))
+
+    return task(task_id)
+
 
 if __name__ == '__main__':
+
     app.run(debug=True)
