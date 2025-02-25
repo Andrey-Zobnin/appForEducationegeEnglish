@@ -1,31 +1,24 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const correctAnswers = JSON.parse(document.getElementById('correct-answers').textContent);
+// main.js
 
-    function checkAnswer(index) {
-        const inputField = document.getElementById(`answer-${index}`);
-        const userAnswer = inputField.value.trim().toLowerCase();
-        const correctAnswer = correctAnswers[index].trim().toLowerCase();
+$(document).ready(function() {
+    $('#checkAnswers').on('click', function() {
+        let correctAnswers = ["FAMOUS", "UNHAPPY"]; // Example correct answers
+        let userAnswers = [];
 
-        if (userAnswer === correctAnswer) {
-            inputField.classList.remove("incorrect");
-            inputField.classList.add("correct");
-            // Отправка статистики на сервер
-            fetch(`/update_score`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ correct: true })
-            });
-        } else {
-            inputField.classList.remove("correct");
-            inputField.classList.add("incorrect");
-        }
-    }
+        // Collect user answers from input fields
+        $('.answer').each(function(index) {
+            userAnswers.push($(this).val().trim().toUpperCase());
+        });
 
-    // Привязка обработчиков событий к кнопкам
-    const buttons = document.querySelectorAll('.submit-button');
-    buttons.forEach((button, index) => {
-        button.addEventListener('click', () => checkAnswer(index));
+        // Check answers
+        let score = 0;
+        userAnswers.forEach((answer, index) => {
+            if (answer === correctAnswers[index]) {
+                score++;
+            }
+        });
+
+        // Display result
+        $('#result').text(`You got ${score} out of ${correctAnswers.length} correct!`);
     });
 });
