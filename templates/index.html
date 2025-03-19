@@ -1,16 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задачи</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Приложение Задач</title>
 </head>
 <body>
     <div class="container">
-        {% for task in tasks %}
-        <a href="/task{{ loop.index }}.html" class="task-box">{{ task }}</a>
-        {% endfor %}
+        <h1>Добро пожаловать в приложение задач</h1>
+        <div class="main-menu">
+            <div class="menu-section">
+                <h2>Начать изучение</h2>
+                <p>Изучайте новые темы и улучшайте свои навыки.</p>
+                <a href="/study" class="menu-button">Начать</a>
+            </div>
+            <div class="menu-section">
+                <h2>Практика</h2>
+                <p>Практикуйтесь на задачах и улучшайте свои результаты.</p>
+                <a href="/practice" class="menu-button">Практика</a>
+            </div>
+            <div class="menu-section">
+                <h2>Рейтинг</h2>
+                <p>Смотрите свои результаты и сравнивайте с другими.</p>
+                <a href="/rating" class="menu-button">Рейтинг</a>
+            </div>
+            <div class="menu-section">
+                <h2>Статистика</h2>
+                <p>Отслеживайте свой прогресс и улучшайте результаты.</p>
+                <a href="/statistics" class="menu-button">Статистика</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
